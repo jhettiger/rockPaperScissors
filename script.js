@@ -1,6 +1,5 @@
-
 let computerChoice = getComputerChoice();
-let userChoice = prompt ("Do you choose rock, paper, or scissors?")
+let userChoice = prompt("Do you choose rock, paper, or scissors?");
 let userScore = 0;
 let computerScore = 0;
 
@@ -10,10 +9,16 @@ function getComputerChoice(computerChoice) {
     let randomNumber = Math.floor(Math.random() * 3);
     return (randomPick[randomNumber]);
 }
-console.log(computerChoice);
-console.log(userChoice)
-//check to see who won 
+
+
+//generate user choice
+function getUserChoice(userChoice){
+    prompt ("Do you choose rock, paper, or scissors?");
+}
+//play 1 round 
 function playRound(userChoice, computerChoice) {
+computerChoice = getComputerChoice();
+
 if (userChoice === "ROCK" && computerChoice === "SCISSORS"){
     console.log("You win! Rock beats scissors!");
     userScore = userScore + 1;
@@ -41,18 +46,11 @@ else if (userChoice === "SCISSORS" && computerChoice === "ROCK"){
 else {
     console.log("It's a tie!");
 }
+getUserChoice();
 };
-playRound(userChoice,computerChoice);
-//create round of 5 game
-function game() {
-    for (i=1; i <5; i++){
-        playRound(userChoice, computerChoice);
-    }
-    declareWinner();
-}
-game();
-//return winner
-function declareWinner() {
+
+//determine who wins
+function declareWinner(userScore, computerScore) {
     if (userScore > computerScore){
         console.log("You win! Computer sucks!");
     }
@@ -63,5 +61,14 @@ function declareWinner() {
         console.log("It's a tie! You both suck!");
     }
 }
+//create round of 5 game
+function game() {
+    for (i=1; i <=5; i++){
+        playRound(userChoice, computerChoice);
+    }
+    declareWinner();
+}
+game();
+
 console.log(userScore);
 console.log(computerScore);
